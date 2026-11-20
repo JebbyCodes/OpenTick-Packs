@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenTick Packs</title>
+<meta name="description" content="Sections and colour themes for OpenTick, made by people like you. Find one, copy its code, and add it in a few taps.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234772fa'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="./" aria-label="OpenTick Packs, home"><span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="8" fill="currentColor"/><path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>OpenTick <b>Packs</b></span></a>
+    <nav aria-label="Links">
+      <a href="https://jebbycodes.github.io/OpenTick/" rel="noopener">Open OpenTick</a>
+      <a href="https://github.com/JebbyCodes/OpenTick-Packs/blob/main/CONTRIBUTING.md" rel="noopener">Share a pack</a>
+      <a href="https://github.com/JebbyCodes/OpenTick-Packs" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Sections and themes for OpenTick, made by people like you</h1>
+    <p class="lead">A <b>pack</b> is a small file that adds a ready-made section (a reading list, a plant journal, a study planner…) or a set of colours to your OpenTick. Every pack has a <b>code</b>.</p>
+    <ol class="steps">
+      <li><span>1</span><div><b>Find a pack</b><small>Search below, or browse.</small></div></li>
+      <li><span>2</span><div><b>Copy its code</b><small>Like <code>K7QM-3XRD</code>.</small></div></li>
+      <li><span>3</span><div><b>Type it into OpenTick</b><small>Settings → Sections &amp; packs → Pack library.</small></div></li>
+    </ol>
+  </section>
+
+  <section class="tools" aria-label="Find a pack">
+    <label class="search"><span class="sr">Search packs</span><input id="q" type="search" placeholder="Search by name, topic, author or code" autocomplete="off"></label>
+    <div class="row">
+      <div class="chips" id="kinds" role="group" aria-label="Kind"></div>
+      <label class="sort"><span>Sort</span><select id="sort"><option value="new">Newest</option><option value="name">Name</option><option value="size">Most to start with</option></select></label>
+    </div>
+    <div class="chips" id="tags" role="group" aria-label="Topics"></div>
+  </section>
+
+  <p id="status" class="status" role="status">Loading the library…</p>
+  <ul id="grid" class="grid"></ul>
+
+  <section class="share">
+    <h2>Made something good?</h2>
+    <p>Build a section in OpenTick, export it from <i>Settings → Sections &amp; packs</i>, and send it here as a pull request. It is checked automatically (including how it affects OpenTick’s speed) and reviewed before it is published. <a href="https://github.com/JebbyCodes/OpenTick-Packs/blob/main/CONTRIBUTING.md" rel="noopener">How to send one →</a></p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p>Packs are <b>data only</b>: sections, entries and colours. They contain no code and cannot read anything you have in OpenTick, and you see what is inside before anything is added. Each pack has its own licence, shown on its page.</p>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlg-title"><div id="dlg-body"></div></dialog>
+<noscript><p class="wrap">This page needs JavaScript to list the packs. You can also browse the <a href="https://github.com/JebbyCodes/OpenTick-Packs/tree/main/packs">packs folder</a> on GitHub.</p></noscript>
+<script src="app.js"></script>
+</body>
+</html>

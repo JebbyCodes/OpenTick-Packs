@@ -1,0 +1,8 @@
+{
+  "startupCpuMs": { "warn": 80, "fail": 300 },
+  "heapMB": { "warn": 10, "fail": 40 },
+  "firstDrawMs": { "warn": 250, "fail": 900 },
+  "typicalDrawMs": { "warn": 150, "fail": 500 },
+  "elements": { "warn": 4000, "fail": 12000 },
+  "themeMs": { "warn": 120, "fail": 400 }
+}

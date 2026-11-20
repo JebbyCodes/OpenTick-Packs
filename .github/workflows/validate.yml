@@ -1,0 +1,59 @@
+# CHECK 1 on every pull request: is every pack one that OpenTick accepts, under the library's rules?
+# It reads the packs with OpenTick's own code (a checkout of the OpenTick repository), so what passes here is what the app accepts.
+# Pull requests from people who do not maintain the library may only change files in packs/.
+name: Check packs
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '23 5 * * 1' # every Monday: do the published packs still pass with the newest OpenTick?
+permissions:
+  contents: read
+concurrency:
+  group: check-packs-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    name: Check packs
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: JebbyCodes/OpenTick
+          ref: ${{ vars.OPENTICK_REF || 'main' }}
+          path: opentick
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check the packs
+        env:
+          OPENTICK_DIR: ${{ github.workspace }}/opentick
+          BASE_REF: ${{ github.base_ref }}
+          AUTHOR_ASSOCIATION: ${{ github.event.pull_request.author_association }}
+        run: |
+          ARGS=""
+          if [ -n "$BASE_REF" ]; then
+            git fetch --no-tags origin "$BASE_REF"
+            ARGS="--base origin/$BASE_REF"
+            case "$AUTHOR_ASSOCIATION" in OWNER|MEMBER|COLLABORATOR) ;; *) ARGS="$ARGS --strict-scope" ;; esac
+          fi
+          node scripts/validate.mjs $ARGS
+      - name: The library's own tests
+        env:
+          OPENTICK_DIR: ${{ github.workspace }}/opentick
+        run: node test/run.mjs --no-browser
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validate-report
+          path: report/
+          if-no-files-found: ignore
+          retention-days: 7

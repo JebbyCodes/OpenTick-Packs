@@ -1,0 +1,70 @@
+# CHECK 2 on every pull request: what does the pack do to a real OpenTick? Start-up time, memory, drawing time on a slowed-down processor,
+# and any error, in headless Chromium, compared with the same app without the pack. See scripts/perf.mjs and perf-budget.json.
+name: Performance check
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      packs:
+        description: 'Pack ids to measure, comma separated (empty = every pack)'
+        required: false
+  schedule:
+    - cron: '47 5 * * 1' # every Monday: every published pack against the newest OpenTick
+permissions:
+  contents: read
+concurrency:
+  group: perf-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  perf:
+    name: Performance check
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: JebbyCodes/OpenTick
+          ref: ${{ vars.OPENTICK_REF || 'main' }}
+          path: opentick
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install the browser
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Work out which packs to measure
+        id: which
+        env:
+          OPENTICK_DIR: ${{ github.workspace }}/opentick
+          BASE_REF: ${{ github.base_ref }}
+          INPUT_PACKS: ${{ github.event.inputs.packs }}
+        run: |
+          if [ -n "$BASE_REF" ]; then
+            git fetch --no-tags origin "$BASE_REF"
+            node scripts/validate.mjs --base "origin/$BASE_REF" > /dev/null || true   # (the other check reports problems; this only needs the list)
+            echo "args=--from report/validate.json" >> "$GITHUB_OUTPUT"
+          elif [ -n "$INPUT_PACKS" ]; then
+            echo "args=--packs $INPUT_PACKS" >> "$GITHUB_OUTPUT"
+          else
+            echo "args=--all" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Measure
+        env:
+          OPENTICK_DIR: ${{ github.workspace }}/opentick
+          ARGS: ${{ steps.which.outputs.args }}
+        run: node scripts/perf.mjs $ARGS --runs 5
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: perf-report
+          path: report/
+          if-no-files-found: ignore
+          retention-days: 7

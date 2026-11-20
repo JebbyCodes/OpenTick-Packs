@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: A problem with OpenTick itself
+    url: https://github.com/JebbyCodes/OpenTick/issues
+    about: Bugs and ideas for the app go in the OpenTick repository.

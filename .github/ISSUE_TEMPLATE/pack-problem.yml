@@ -1,0 +1,31 @@
+name: A problem with a pack
+description: A pack is broken, slow, wrong, or should not be here.
+title: 'Pack: '
+labels: [pack-problem]
+body:
+  - type: input
+    id: code
+    attributes:
+      label: The pack's code or name
+      placeholder: K7QM-3XRD
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is wrong?
+      options:
+        - It does not work or shows an error
+        - It makes OpenTick slow
+        - It contains personal data or something that should not be public
+        - It is copied from someone else without permission
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What happened, and in which OpenTick (version, phone or computer)?
+    validations:
+      required: true

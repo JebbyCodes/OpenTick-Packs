@@ -1,0 +1,5 @@
+# Everything is reviewed by the maintainer before it is merged (turn on "Require review from Code Owners" in the branch protection rule for main).
+*                @JebbyCodes
+/.github/        @JebbyCodes
+/scripts/        @JebbyCodes
+/site/           @JebbyCodes
