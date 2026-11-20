@@ -1,0 +1,14 @@
+# Keeps the actions the workflows use (and the Node runtime they run on) from going out of date and being deprecated, the same way OpenTick does.
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Europe/London
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies

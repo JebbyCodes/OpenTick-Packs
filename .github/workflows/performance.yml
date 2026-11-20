@@ -22,19 +22,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: JebbyCodes/OpenTick
           ref: ${{ vars.OPENTICK_REF || 'main' }}
           path: opentick
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: 24
       - name: Install the browser
         run: |
           npm install --no-audit --no-fund
@@ -62,7 +62,7 @@ jobs:
         run: node scripts/perf.mjs $ARGS --runs 5
       - name: Keep the report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: perf-report
           path: report/

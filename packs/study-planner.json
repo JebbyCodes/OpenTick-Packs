@@ -3,10 +3,10 @@
   "format": 1,
   "id": "study-planner",
   "name": "Study planner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "OpenTick",
   "description": "Topics to learn and revise, with how confident you feel and when to look at them again.",
-  "license": "CC0-1.0",
+  "license": "Unlicense",
   "homepage": "https://github.com/JebbyCodes/OpenTick-Packs",
   "tags": [
     "study",

@@ -18,26 +18,27 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: JebbyCodes/OpenTick
           ref: ${{ vars.OPENTICK_REF || 'main' }}
           path: opentick
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: 24
       - name: Build (this refuses to publish if any pack fails the rules)
         env:
           OPENTICK_DIR: ${{ github.workspace }}/opentick
         run: node scripts/build-site.mjs
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
+          include-hidden-files: true # v4 and later leave dotfiles out by default; the build writes _site/.nojekyll and the published site should keep it
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -47,4 +48,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

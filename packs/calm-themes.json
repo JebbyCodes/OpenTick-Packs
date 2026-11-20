@@ -3,10 +3,10 @@
   "format": 1,
   "id": "calm-themes",
   "name": "Calm themes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "OpenTick",
   "description": "Three quiet themes: Forest and Dusk for the evening, Paper for the day.",
-  "license": "CC0-1.0",
+  "license": "Unlicense",
   "homepage": "https://github.com/JebbyCodes/OpenTick-Packs",
   "tags": [
     "themes"

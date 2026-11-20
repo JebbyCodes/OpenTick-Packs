@@ -1,4 +1,13 @@
-# OpenTick Packs
+<div align="center">
+  <img src="site/logo.png" alt="OpenTick" width="128">
+
+  # OpenTick Packs
+
+  <a href="https://unlicense.org"><img src="https://img.shields.io/badge/license-Unlicense-blue.svg" alt="Unlicense"></a>
+  <a href="https://github.com/JebbyCodes/OpenTick-Packs/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/JebbyCodes/OpenTick-Packs/validate.yml?label=check%20packs" alt="Check packs"></a>
+  <a href="https://github.com/JebbyCodes/OpenTick-Packs/actions/workflows/performance.yml"><img src="https://img.shields.io/github/actions/workflow/status/JebbyCodes/OpenTick-Packs/performance.yml?label=performance" alt="Performance check"></a>
+  <a href="https://github.com/JebbyCodes/OpenTick"><img src="https://img.shields.io/badge/for-OpenTick-e09f00" alt="For OpenTick"></a>
+</div>
 
 The pack library for [OpenTick](https://github.com/JebbyCodes/OpenTick): ready-made **sections** and colour **themes**, made by people like you.
 
@@ -36,6 +45,8 @@ site/                    the website (plain HTML, CSS and JS, no build step)
 
 ## Running it locally
 
+You need [Node.js](https://nodejs.org) 24 or newer, the version the workflows use.
+
 ```sh
 git clone https://github.com/JebbyCodes/OpenTick.git ../OpenTick
 npm install && npx playwright install chromium
@@ -51,4 +62,4 @@ One-time setup is in [MAINTAINING.md](MAINTAINING.md).
 
 ## Licence
 
-The tooling is public domain (see [LICENSE](LICENSE)). Each pack keeps the licence in its own `license` field.
+The tooling, the website and the logo are public domain under the [Unlicense](https://unlicense.org) (see [LICENSE](LICENSE)), the same as [OpenTick](https://github.com/JebbyCodes/OpenTick). The packs made by OpenTick are Unlicense too; every other pack keeps the licence in its own `license` field.

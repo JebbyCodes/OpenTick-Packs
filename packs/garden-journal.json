@@ -3,10 +3,10 @@
   "format": 1,
   "id": "garden-journal",
   "name": "Garden journal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "OpenTick",
   "description": "What you planted, where, and how often it wants watering.",
-  "license": "CC0-1.0",
+  "license": "Unlicense",
   "homepage": "https://github.com/JebbyCodes/OpenTick-Packs",
   "tags": [
     "home",

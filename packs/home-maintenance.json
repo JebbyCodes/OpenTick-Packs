@@ -3,10 +3,10 @@
   "format": 1,
   "id": "home-maintenance",
   "name": "Home maintenance",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "OpenTick",
   "description": "The jobs a home needs now and then, with when each was last done.",
-  "license": "CC0-1.0",
+  "license": "Unlicense",
   "homepage": "https://github.com/JebbyCodes/OpenTick-Packs",
   "tags": [
     "home"

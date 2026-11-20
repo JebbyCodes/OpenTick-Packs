@@ -6,7 +6,7 @@ import { join, resolve, extname, normalize } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT } from './lib/app.mjs';
 import { build } from './build-site.mjs';
-const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8' };
+const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml' };
 // a tiny static file server: the folder, no listing, nothing outside it
 export function serveDir(dir, port = 0) {
   const server = createServer((req, res) => {

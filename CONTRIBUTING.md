@@ -77,4 +77,4 @@ npm run serve          # the website, at http://localhost:8080
 
 ## Licence
 
-The library's tooling is public domain (the Unlicense). Every pack keeps the licence its author gave it in its own `license` field.
+The library's tooling, website and logo are public domain (the Unlicense), the same as OpenTick. Every pack keeps the licence its author gave it in its own `license` field.

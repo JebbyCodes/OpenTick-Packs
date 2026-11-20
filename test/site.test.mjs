@@ -52,7 +52,7 @@ const fits = async p => assert.ok(await p.evaluate(() => document.documentElemen
   writeFileSync(join(evil, 'packs', 'evil.json'), JSON.stringify({ opentick: 'pack', format: 1, id: 'evil', name: x, homepage: 'javascript:window.__pwn=3', sections: [{ name: x, title: x, fields: [{ name: x, type: x, key: 'a' }], entries: [{ title: x, vals: { a: x } }] }], themes: [{ name: x, vars: { '--bg': 'red;background:url(//evil.example/x)', '--text': 'expression(alert(1))', '--acc': '#fff' } }] }));
   const es = await serveDir(evil), { ctx, p } = await page(1200, 800, `http://127.0.0.1:${es.address().port}/`); await p.waitForSelector('.card');
   assert.equal(await p.locator('.card').count(), 1, 'a row with a bad code, a path outside packs/ or a bad id is dropped');
-  assert.equal(await p.locator('img').count(), 0); await p.click('.card'); await p.waitForSelector('#dlg .sec'); await p.waitForTimeout(200);
+  assert.equal(await p.locator('main img, dialog img').count(), 0, 'no library text becomes an image (the logo in the header is the page\'s own)'); await p.click('.card'); await p.waitForSelector('#dlg .sec'); await p.waitForTimeout(200);
   assert.equal(await p.locator('#dlg img, #dlg script').count(), 0, 'nothing in a pack becomes an element'); assert.equal(await p.evaluate(() => window.__pwn), undefined, 'nothing ran');
   assert.equal(await p.locator('#dlg a[href^="javascript"]').count(), 0, 'a javascript: link is never used');
   assert.ok(!(await p.evaluate(() => document.querySelector('#dlg .th .pv').getAttribute('style'))).includes('evil.example'), 'a colour that is not a colour is replaced'); await ctx.close(); es.close();

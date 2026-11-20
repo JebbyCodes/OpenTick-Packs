@@ -4,8 +4,16 @@
   "private": true,
   "description": "The OpenTick pack library: sections and colour themes, with codes, a website and automatic checks.",
   "license": "Unlicense",
+  "homepage": "https://github.com/JebbyCodes/OpenTick-Packs#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JebbyCodes/OpenTick-Packs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JebbyCodes/OpenTick-Packs/issues"
+  },
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": { "node": ">=24" },
   "scripts": {
     "check": "node scripts/validate.mjs",
     "perf": "node scripts/perf.mjs --all",
